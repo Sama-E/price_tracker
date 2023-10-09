@@ -50,6 +50,7 @@ export function extractDescription($: any) {
   return "";
 }
 
+// Find/Return Highest Price Compare Prices
 export function getHighestPrice(priceList: PriceHistoryItem[]) {
   let highestPrice = priceList[0];
 
@@ -62,6 +63,7 @@ export function getHighestPrice(priceList: PriceHistoryItem[]) {
   return highestPrice.price;
 }
 
+// Find/Return Lowest Price Compare Prices
 export function getLowestPrice(priceList: PriceHistoryItem[]) {
   let lowestPrice = priceList[0];
 
@@ -74,6 +76,7 @@ export function getLowestPrice(priceList: PriceHistoryItem[]) {
   return lowestPrice.price;
 }
 
+// Find Average Price
 export function getAveragePrice(priceList: PriceHistoryItem[]) {
   const sumOfPrices = priceList.reduce((acc, curr) => acc + curr.price, 0);
   const averagePrice = sumOfPrices / priceList.length || 0;
@@ -81,6 +84,7 @@ export function getAveragePrice(priceList: PriceHistoryItem[]) {
   return averagePrice;
 }
 
+// Format Number
 export const formatNumber = (num: number = 0) => {
   return num.toLocaleString(undefined, {
     minimumFractionDigits: 0,

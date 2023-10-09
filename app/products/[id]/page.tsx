@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation';
 import { getProductById } from '@/lib/actions';
 import { Params } from '@/types';
 import { formatNumber } from '@/lib/utils';
+import Modal from '@/components/Modal';
+import PriceInfoCard from '@/components/PriceInfoCard';
 
 interface Props {
   params: Params;
@@ -122,12 +124,13 @@ const ProductDetails = async ({ params: { id } }: Props) => {
             </div>
           </div>
 
-          {/* <div className="my-7 flex flex-col gap-5">
+          <div className="my-7 flex flex-col gap-5">
             <div className="flex gap-5 flex-wrap">
               <PriceInfoCard 
                 title="Current Price"
                 iconSrc="/assets/icons/price-tag.svg"
                 value={`${product.currency} ${formatNumber(product.currentPrice)}`}
+                borderColor='black'
               />
               <PriceInfoCard 
                 title="Average Price"
@@ -147,7 +150,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
             </div>
           </div>
 
-          <Modal productId={id} /> */}
+          <Modal productId={id} />
         </div>
       </div>
 

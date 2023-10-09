@@ -1,6 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache";
+import { generateEmailBody, sendEmail } from "../nodemailer";
 
 import { connectToDB } from "../mongoose";
 import { scrapeAmazonProduct } from "../scraper";
@@ -79,6 +80,29 @@ export async function getAllProducts(){
     const products = await Product.find();
 
     return products;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Add User Email to Product
+export async function addUserEmailToProduct(productId: string, userEmail:string) {
+  try {
+    const product = await Product.findById(productId);
+
+    if(!product) return;
+
+    const userExists = product.users.some((user: User) => user.email === userEmail);
+
+    if(!userExists) {
+      product.users.push({ email: userEmail });
+
+      await product.save();
+
+      const emailContent = await generateEmailBody(product, "WELCOME");
+
+      await sendEmail(emailContent, [userEmail]);
+    }
   } catch (error) {
     console.log(error);
   }
