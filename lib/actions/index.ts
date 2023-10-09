@@ -8,6 +8,7 @@ import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { User } from "@/types";
 import Product from "../models/product.model";
 
+//Scrape and Store Product
 export async function scrapeAndStoreProduct(productUrl: string) {
   if(!productUrl) return;
 
@@ -51,5 +52,16 @@ export async function scrapeAndStoreProduct(productUrl: string) {
     revalidatePath(`/products/${newProduct._id}`);
   } catch (error: any) {
     throw new Error(`Failed to create/update product: ${error.message}`);
+  }
+}
+
+//Get Product By Id
+export async function getProductById(productId: string){
+
+  try {
+    connectToDB();
+    
+  } catch (error: any){
+
   }
 }
