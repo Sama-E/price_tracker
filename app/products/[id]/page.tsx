@@ -2,11 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { getProductById } from '@/lib/actions';
+import { getProductById, getSimilarProducts } from '@/lib/actions';
 import { Params } from '@/types';
 import { formatNumber } from '@/lib/utils';
 import Modal from '@/components/Modal';
 import PriceInfoCard from '@/components/PriceInfoCard';
+import ProductCard from '@/components/ProductCard';
 
 interface Props {
   params: Params;
@@ -15,11 +16,15 @@ interface Props {
 const ProductDetails = async ({ params: { id } }: Props) => {
   const product = await getProductById(id);
 
-  if(!product) redirect('/')
+  if(!product) redirect('/');
+
+  const similarProducts = await getSimilarProducts(id);
 
   return (
     <div className="product-container">
       <div className="flex gap-28 xl:flex-row flex-col">
+
+        {/* PRODUCT IMAGE */}
         <div className="product-image">
           <Image 
             src={product.image}
@@ -30,6 +35,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           />
         </div>
 
+        {/* TITLE */}
         <div className="flex-1 flex flex-col">
           <div className="flex justify-between items-start gap-5 flex-wrap pb-6">
             <div className="flex flex-col gap-3">
@@ -37,6 +43,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
                 {product.title}
               </p>
 
+              {/* LINK */}
               <Link
                 href={product.url}
                 target="_blank"
@@ -46,6 +53,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               </Link>
             </div>
 
+            {/* HEARTS, SHARE - INACTIVE */}
             <div className="flex items-center gap-3">
               <div className="product-hearts">
                 <Image 
@@ -80,7 +88,10 @@ const ProductDetails = async ({ params: { id } }: Props) => {
             </div>
           </div>
 
+          {/* PRICE, REVIEWS, STARS */}
           <div className="product-info">
+
+            {/* PRICE */}
             <div className="flex flex-col gap-2">
               <p className="text-[34px] text-secondary font-bold">
                 {product.currency} {formatNumber(product.currentPrice)}
@@ -90,6 +101,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               </p>
             </div>
 
+            {/* STARS, REVIEWS */}
             <div className="flex flex-col gap-4">
               <div className="flex gap-3">
                 <div className="product-stars">
@@ -124,13 +136,13 @@ const ProductDetails = async ({ params: { id } }: Props) => {
             </div>
           </div>
 
+          {/* PRICE INFO CARDS */}
           <div className="my-7 flex flex-col gap-5">
             <div className="flex gap-5 flex-wrap">
               <PriceInfoCard 
                 title="Current Price"
                 iconSrc="/assets/icons/price-tag.svg"
                 value={`${product.currency} ${formatNumber(product.currentPrice)}`}
-                borderColor='black'
               />
               <PriceInfoCard 
                 title="Average Price"
@@ -150,10 +162,12 @@ const ProductDetails = async ({ params: { id } }: Props) => {
             </div>
           </div>
 
+          {/* MODAL */}
           <Modal productId={id} />
         </div>
       </div>
 
+      {/* DESCRIPTION */}
       <div className="flex flex-col gap-16">
         <div className="flex flex-col gap-5">
           <h3 className="text-2xl text-secondary font-semibold">
@@ -165,6 +179,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           </div>
         </div>
 
+        {/* BUY NOW BUTTON */}
         <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
           <Image 
             src="/assets/icons/bag.svg"
@@ -179,7 +194,8 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         </button>
       </div>
 
-      {/* {similarProducts && similarProducts?.length > 0 && (
+      {/* SIMILAR PRODUCTS - if exists */}
+      {similarProducts && similarProducts?.length > 0 && (
         <div className="py-14 flex flex-col gap-2 w-full">
           <p className="section-text">Similar Products</p>
 
@@ -189,7 +205,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
             ))}
           </div>
         </div>
-      )} */}
+      )}
 
     </div>
   )

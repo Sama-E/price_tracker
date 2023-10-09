@@ -85,7 +85,28 @@ export async function getAllProducts(){
   }
 }
 
-// Add User Email to Product
+//Similar Products
+export async function getSimilarProducts(productId: string){
+  try {
+
+    connectToDB();
+
+    const currentProduct = await Product.findById(productId);
+
+    if(!currentProduct) return;
+
+    const simialrProducts = await Product.find({
+      _id: { $ne: productId },
+    }).limit(3);
+
+    return simialrProducts;
+    
+  } catch(error: any) {
+    console.log(error)
+  }
+}
+
+//Add User Email to Product
 export async function addUserEmailToProduct(productId: string, userEmail:string) {
   try {
     const product = await Product.findById(productId);
