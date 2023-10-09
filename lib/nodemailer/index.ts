@@ -3,6 +3,8 @@
 import { EmailContent, EmailProductInfo, NotificationType } from '@/types';
 import nodemailer from 'nodemailer';
 
+// Four types of Notification emails - welcome, change of stock,  
+// lowest price, threshold met
 const Notification = {
   WELCOME: 'WELCOME',
   CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
@@ -15,16 +17,20 @@ export async function generateEmailBody(
   type: NotificationType
   ) {
   const THRESHOLD_PERCENTAGE = 40;
+
   // Shorten the product title
   const shortenedTitle =
     product.title.length > 20
       ? `${product.title.substring(0, 20)}...`
       : product.title;
 
+  // Subject and Body
   let subject = "";
   let body = "";
 
   switch (type) {
+
+    //Welcome
     case Notification.WELCOME:
       subject = `Welcome to Price Tracking for ${shortenedTitle}`;
       body = `
@@ -43,6 +49,7 @@ export async function generateEmailBody(
       `;
       break;
 
+    // Change of Stock
     case Notification.CHANGE_OF_STOCK:
       subject = `${shortenedTitle} is now back in stock!`;
       body = `
@@ -53,6 +60,7 @@ export async function generateEmailBody(
       `;
       break;
 
+    // Lowest Price
     case Notification.LOWEST_PRICE:
       subject = `Lowest Price Alert for ${shortenedTitle}`;
       body = `
@@ -63,6 +71,7 @@ export async function generateEmailBody(
       `;
       break;
 
+    // Threshold met = Threshold Percentage 40%
     case Notification.THRESHOLD_MET:
       subject = `Discount Alert for ${shortenedTitle}`;
       body = `
@@ -85,15 +94,16 @@ const transporter = nodemailer.createTransport({
   service: 'hotmail',
   port: 2525,
   auth: {
-    user: 'javascriptmastery@outlook.com',
+    user: 'sama_developer@outlook.com',
     pass: process.env.EMAIL_PASSWORD,
   },
   maxConnections: 1
 })
 
+// Send Email
 export const sendEmail = async (emailContent: EmailContent, sendTo: string[]) => {
   const mailOptions = {
-    from: 'javascriptmastery@outlook.com',
+    from: 'sama_developer@outlook.com',
     to: sendTo,
     html: emailContent.body,
     subject: emailContent.subject,

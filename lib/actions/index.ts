@@ -109,17 +109,21 @@ export async function getSimilarProducts(productId: string){
 //Add User Email to Product
 export async function addUserEmailToProduct(productId: string, userEmail:string) {
   try {
+    //Product
     const product = await Product.findById(productId);
 
     if(!product) return;
 
+    //User exists? 
     const userExists = product.users.some((user: User) => user.email === userEmail);
 
+    //Add User to Product's user array list
     if(!userExists) {
       product.users.push({ email: userEmail });
 
       await product.save();
 
+      //Generate Email Body from nodemailer
       const emailContent = await generateEmailBody(product, "WELCOME");
 
       await sendEmail(emailContent, [userEmail]);
