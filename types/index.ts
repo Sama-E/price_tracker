@@ -6,6 +6,10 @@ export type User = {
   email: string;
 };
 
+export type Params = {
+  id: string;
+}
+
 export type Product = {
   _id?: string;
   url: string;

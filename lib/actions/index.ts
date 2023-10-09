@@ -60,8 +60,26 @@ export async function getProductById(productId: string){
 
   try {
     connectToDB();
-    
-  } catch (error: any){
 
+    const product = await Product.findOne({_id: productId});
+
+    if(!product) return null;
+
+    return product;
+  } catch (error: any){
+    console.log(error);
+  }
+}
+
+//Get all Products
+export async function getAllProducts(){
+  try {
+    connectToDB();
+
+    const products = await Product.find();
+
+    return products;
+  } catch (error) {
+    console.log(error);
   }
 }
