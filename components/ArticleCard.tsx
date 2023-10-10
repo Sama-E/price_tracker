@@ -9,8 +9,8 @@ const ArticleCard = ({data} : {data:news}) => {
     <div className="product-card max-w-xs">
       <div className="product-card_img-container">
         <Image 
-          // src={`${data?.urlToImage !== null ? data?.urlToImage : '/img/news-u-logo.webp'}`}
-          src={data?.urlToImage}
+          src={`${data?.urlToImage !== null ? data?.urlToImage : '/assets/images/news.png'}`}
+          // src={data.urlToImage && data?.urlToImage}
           alt={data?.title}
           width={200}
           height={200}

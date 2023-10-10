@@ -51,6 +51,7 @@ export type EmailProductInfo = {
 
 //NEWS
 
+//News
 export type news = {
   source: {
     id: string,
@@ -64,3 +65,20 @@ export type news = {
   publishedAt: string,
   content: string
 }
+
+//Markets
+
+//Stock - API Vantage
+//https://github.com/ricardo93borges/alphavantage-wrapper-ts#alphavantage-wrapper-ts
+// export type stock = {
+//     symbol: string
+//     open: string
+//     high: string
+//     low: string
+//     price: string
+//     volume: string
+//     latestTradingDay: string
+//     previousClose: string
+//     change: string
+//     changePercent: string
+//   }
