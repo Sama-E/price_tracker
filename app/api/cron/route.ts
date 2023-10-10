@@ -6,6 +6,10 @@ import { scrapeAmazonProduct } from "@/lib/scraper";
 import { getAveragePrice, getEmailNotifType, getHighestPrice, getLowestPrice } from "@/lib/utils";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 
+export const maxDuration = 300; // This function can run for a maximum of 300 seconds
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 //1. Scrape latest product details and update DB
 //2. Check Each Product Status and Send Email
 export async function GET(request: Request) {
