@@ -29,7 +29,7 @@ const Navbar = () => {
         <Link href="/">
           Google Flights (coming)
         </Link>
-          {navIcons.map((icon) => (
+          {/* {navIcons.map((icon) => (
             <Image 
               key={icon.alt}
               src={icon.src}
@@ -38,7 +38,7 @@ const Navbar = () => {
               height={28}
               className="object-contain"
             />
-          ))}
+          ))} */}
         </div>
       </nav>
     </header>

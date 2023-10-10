@@ -28,6 +28,10 @@
     @apply text-secondary text-[32px] font-semibold;
   }
 
+  .section2-text {
+    @apply text-secondary text-[22px] font-semibold;
+  }
+
   .small-text {
     @apply flex gap-2 text-sm font-medium text-primary;
   }
