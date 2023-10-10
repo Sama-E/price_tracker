@@ -1,4 +1,4 @@
-import { PriceHistoryItem, Product } from "@/types";
+import { PriceHistoryItem, Product, news } from "@/types";
 
 const Notification = {
   WELCOME: 'WELCOME',
@@ -120,3 +120,11 @@ export const getEmailNotifType = (
 
   return null;
 };
+
+//News
+//Remove Duplicate Articles
+export const removeDuplicateData = (articles:any) => {
+  const randomArticle:news[] = articles?.articles
+  const filterArticles = randomArticle.filter(article => article?.source.id !== null)
+  return filterArticles
+}

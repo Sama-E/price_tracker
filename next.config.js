@@ -5,7 +5,13 @@ const nextConfig = {
     serverComponentsExternalPackages: ['mongoose']
   },
   images: {
-    domains: ['m.media-amazon.com']
+    domains: ['m.media-amazon.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   }
 }
 

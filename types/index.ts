@@ -1,3 +1,5 @@
+//AMAZON
+
 export type PriceHistoryItem = {
   price: number;
 };
@@ -46,3 +48,19 @@ export type EmailProductInfo = {
   title: string;
   url: string;
 };
+
+//NEWS
+
+export type news = {
+  source: {
+    id: string,
+    name: string
+  },
+  author: string,
+  title: string,
+  description: string,
+  url: string,
+  urlToImage: string,
+  publishedAt: string,
+  content: string
+}
