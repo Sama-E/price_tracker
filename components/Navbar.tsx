@@ -19,10 +19,16 @@ const Navbar = () => {
             alt="logo"
           />
           <p className="nav-logo">
-            Price<span className="text-primary">Tracker</span>
+            <span className="text-primary">Tracker</span>
           </p>
         </Link>
         <div className="flex items-center gap-5">
+        <Link href="/amazon">
+          Amazon
+        </Link>
+        <Link href="/">
+          Google Flights (coming)
+        </Link>
           {navIcons.map((icon) => (
             <Image 
               key={icon.alt}

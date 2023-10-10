@@ -1,12 +1,45 @@
-import HeroCarousel from "@/components/HeroCarousel";
-import Searchbar from "@/components/Searchbar";
-import { getAllProducts } from "@/lib/actions";
 import Image from "next/image";
-import ProductCard from './../components/ProductCard';
+const alpha = require('alphavantage')({ key: 'UMXWBLRHRBKE2SIJ' });
 
 const Home = async () => {
 
-  const allProducts = await getAllProducts();
+const date = new Date();
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+let currentDate = `${year}-${month}-${day}`;
+console.log(currentDate);
+
+//BTC
+alpha.forex.rate('btc', 'usd').then((data) => {
+  console.log(data);
+})
+
+alpha.forex.rate('xag', 'usd').then((data) => {
+  console.log(data);
+})
+
+//Invesco QQQ
+alpha.data.quote(`QQQ`).then((data) => {
+  console.log(data);
+});
+
+//Schwab Total Stock Market Index
+alpha.data.quote(`SWTSX`).then((data) => {
+  console.log(data);
+});
+
+//Black Rock iShares Russell 3000
+alpha.data.quote(`IWV`).then((data) => {
+  console.log(data);
+});
+
+//SPDR Gold Shares (GLD)
+alpha.data.quote(`GLD`).then((data) => {
+  console.log(data);
+});
+
+
 
   return (
     <>
@@ -16,7 +49,7 @@ const Home = async () => {
           <div className="flex flex-col justify-center">
             
             <p className="small-text">
-              Smart Price Tracker:
+              Market Snap Shot:
               <Image
                 src="/assets/icons/arrow-right.svg"
                 alt="arrow-right"
@@ -25,19 +58,7 @@ const Home = async () => {
               />
             </p>
             
-            <h1 className="head-text">
-              Unleash the Power of  
-              <span className="text-primary"> PriceTracker</span>
-            </h1>
-
-            <p className="mt-6">
-              Powerful, self-serve product and growth analytics to help you convert, engage, and retain more.
-            </p>
-
-            <Searchbar />
           </div>
-
-          <HeroCarousel />
 
         </div>
       </section>
@@ -46,10 +67,7 @@ const Home = async () => {
         <h2 className="section-text">Trending</h2>
 
         <div className="flex flex-wrap gap-x-8 gap-y-16">
-          {allProducts?.map
-          ((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
+          News Feed
         </div>
       </section>
 
