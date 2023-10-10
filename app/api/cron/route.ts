@@ -81,6 +81,6 @@ export async function GET(request: Request) {
     });
 
   } catch (error : any) {
-    throw new Error(`Error in GET: $(error)`)
+    throw new Error(`Failed to get all products: ${error.message}`)
   }
 }
