@@ -32,7 +32,7 @@ const Home = async () => {
             </p>
             
           </div>
-            <p>{date}</p>
+            {/* <p>{date}</p> */}
         </div>
       </section>
 
