@@ -32,12 +32,12 @@ const Home = async () => {
             </p>
             
           </div>
-            {/* <p>{date}</p> */}
+            
         </div>
       </section>
 
       <section className="trending-section">
-        <h2 className="section-text pl-20">In the News</h2>
+        <h2 className="section-text pl-20">In the News - {date}</h2>
         <p className="section2-text pl-20">Top Headlines</p>
 
         <div className="flex flex-wrap justify-center content-center gap-x-6 gap-y-12 p-10">
