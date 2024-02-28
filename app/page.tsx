@@ -12,7 +12,7 @@ const Home = async () => {
         <div className="flex max-xl:flex-col gap-16">
           <div className="flex flex-col justify-center">
             
-            <p className="small-text">
+            {/* <p className="small-text">
               Market Snap Shot:
               <Image
                 src="/assets/icons/arrow-right.svg"
@@ -20,16 +20,16 @@ const Home = async () => {
                 width={16}
                 height={16}
               />
-            </p>
+            </p> */}
 
             <h1 className="head-text">
-              Unleash the Power of  
-              <span className="text-emerald-600"> Today's Market & News</span>
+              {/* Unleash the Power of   */}
+              <span className="text-emerald-600"> Today's News</span>
             </h1>
 
-            <p className="mt-6">
+            {/* <p className="mt-6">
               Track my ETFs, BTC and news to help you convert, engage, and retain more.
-            </p>
+            </p> */}
             
           </div>
             
